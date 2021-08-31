@@ -7,7 +7,7 @@ import { apolloClient } from "src/apollo/apolloClient";
 const App = (props: AppProps) => {
   return (
     <ApolloProvider client={apolloClient}>
-      <props.Component {...props.pageProps} />;
+      <props.Component {...props.pageProps} />
     </ApolloProvider>
   );
 };
