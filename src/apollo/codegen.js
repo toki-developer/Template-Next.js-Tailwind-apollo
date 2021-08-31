@@ -1,11 +1,20 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const dotenv = require("dotenv");
+
+dotenv.config();
+
 module.exports = {
   schema: [
     {
-      "http://localhost:4000/graphql": {},
+      [process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT]: {
+        headers: {
+          "x-hasura-admin-secret": process.env.HASURA_ADMIN_SECRET,
+        },
+      },
     },
     "src/apollo/client-schema.graphql",
   ],
-  documents: ["src/pages/**/*.{ts,tsx}"],
+  documents: ["src/{components,pages}/**/*.{ts,tsx}"],
   overwrite: true,
   generates: {
     "src/apollo/graphql.tsx": {
